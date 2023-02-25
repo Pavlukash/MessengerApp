@@ -1,6 +1,6 @@
 using MessengerApp.Domain.Exceptions;
 
-namespace SignalRTraining.Middleware;
+namespace MessengerApp.Middleware;
 
 public sealed class ExceptionHandlingMiddleware
 {

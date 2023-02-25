@@ -1,4 +1,4 @@
-namespace MessengerApp.Common.Auth;
+namespace MessengerApp.Services.Auth;
 
 public interface IPasswordHandler
 {

@@ -1,4 +1,4 @@
-namespace MessengerApp.Common.Auth.Responses;
+namespace MessengerApp.Services.Auth.Responses;
 
 public class LoginResponse
 {

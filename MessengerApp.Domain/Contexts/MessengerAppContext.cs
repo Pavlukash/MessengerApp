@@ -10,6 +10,5 @@ public sealed class MessengerAppContext : DbContext
     public MessengerAppContext(DbContextOptions<MessengerAppContext> options)
         : base(options)
     {
-        Database.EnsureCreated();
     }
 }

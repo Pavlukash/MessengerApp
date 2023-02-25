@@ -1,4 +1,4 @@
-namespace MessengerApp.Common.Auth.Options;
+namespace MessengerApp.Services.Auth.Options;
 
 public class PwdOptions
 {

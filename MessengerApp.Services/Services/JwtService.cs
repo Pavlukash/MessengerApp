@@ -1,12 +1,12 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using AutoMapper;
-using MessengerApp.Common.Auth;
-using MessengerApp.Common.Auth.Options;
-using MessengerApp.Common.Auth.Responses;
 using MessengerApp.Domain.Contexts;
 using MessengerApp.Domain.Entities;
+using MessengerApp.Domain.Exceptions;
 using MessengerApp.Domain.Models;
+using MessengerApp.Services.Auth;
+using MessengerApp.Services.Auth.Options;
 using MessengerApp.Services.Extensions;
 using MessengerApp.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +27,7 @@ public sealed class JwtService : IJwtService
         Mapper = mapper;
     }
 
-    public async Task<LoginResponse> Login(string email, string password, CancellationToken cancellationToken)
+    public async Task<string> Login(string email, string password, CancellationToken cancellationToken)
     {
         var identity = await GetIdentity(email, password, cancellationToken);
             
@@ -47,13 +47,12 @@ public sealed class JwtService : IJwtService
             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
         var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-        var response = new LoginResponse
+        if (encodedJwt is null)
         {
-            Token = encodedJwt,
-            UserName = identity.Name!
-        };
-            
-        return response;
+            throw new MessengerAppException();
+        }
+        
+        return encodedJwt;
     }
     
     public async Task<UserDto> Register(UserDto newUserDto, CancellationToken cancellationToken)
@@ -66,7 +65,7 @@ public sealed class JwtService : IJwtService
 
         if (isExists)
         {
-            throw new Exception("User already exists");
+            throw new MessengerAppException("User already exists");
         }
             
         PasswordHandler.CreateHash(newUserDto.Password!, out var hash, out var salt);

@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
-using MessengerApp.Common.Auth.Options;
+using MessengerApp.Services.Auth.Options;
 
-namespace MessengerApp.Common.Auth;
+namespace MessengerApp.Services.Auth;
 
 public class PasswordHandler : IPasswordHandler
 {

@@ -1,9 +1,9 @@
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace MessengerApp.Common.Auth.Options;
+namespace MessengerApp.Services.Auth.Options;
 
-public class AuthOptions
+public static class AuthOptions
 {
     public const string Issuer = "MyAuthServer"; 
     public const string Audience = "MyAuthClient";

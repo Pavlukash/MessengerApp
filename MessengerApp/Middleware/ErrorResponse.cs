@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace SignalRTraining.Middleware;
+namespace MessengerApp.Middleware;
 
 public sealed class ErrorResponse
 {

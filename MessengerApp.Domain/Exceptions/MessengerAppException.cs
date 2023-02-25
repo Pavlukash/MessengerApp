@@ -4,7 +4,7 @@ namespace MessengerApp.Domain.Exceptions;
 
 public class MessengerAppException : Exception
 {
-    protected MessengerAppException(string? message = null) : base(message) { }
+    public MessengerAppException(string? message = null) : base(message) { }
     public virtual int GetStatusCode()
     {
         return StatusCodes.Status500InternalServerError;
